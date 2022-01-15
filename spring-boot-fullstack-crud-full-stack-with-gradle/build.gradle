@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.in28minutes.fullstack.springboot.gradle.crud'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 
 repositories {
 	mavenCentral()
