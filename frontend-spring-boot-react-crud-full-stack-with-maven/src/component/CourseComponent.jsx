@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { matchPath } from 'react-router';
 import CourseDataService, { INSTRUCTOR } from '../service/CourseDataService';
 import { createBrowserHistory } from 'history';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 class CourseComponent extends Component {
 
@@ -21,6 +21,7 @@ class CourseComponent extends Component {
     }
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.validate = this.validate.bind(this)
   }
 
   componentDidMount() {
@@ -39,6 +40,18 @@ class CourseComponent extends Component {
     console.log(values)
   }
 
+  validate(values) {
+    let errors = {}
+    
+    if (!values.description) {
+      errors.description = 'Enter a Description'
+    } else if (values.description.length < 5) {
+      errors.description = 'Enter atleast 5 Characters in Description'
+    }
+
+    return errors
+  }
+
   render() {
     let { description, id} = this.state
 
@@ -46,10 +59,22 @@ class CourseComponent extends Component {
       <div>
           <h3>Course</h3>
           <div className="container">
-            <Formik initialValues={{ id, description }} onSubmit={this.onSubmit}>
+            <Formik 
+              initialValues={{ id, description }}
+              onSubmit={this.onSubmit}
+              validateOnChange={false}
+              validateOnBlur={true}
+              validate={this.validate}
+              enableReinitialize={true}
+            >
               {
                 (props) => (
                   <Form>
+                    <ErrorMessage 
+                        name="description"
+                        component="div"
+                        className="alert alert-warning" />
+
                     <fieldset className="form-group">
                       <label>Id</label>
                       <Field className="form-control" type="text" name="id" disabled />
