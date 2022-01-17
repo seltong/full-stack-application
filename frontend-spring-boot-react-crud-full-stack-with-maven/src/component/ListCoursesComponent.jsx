@@ -40,11 +40,13 @@ class ListCoursesComponent extends Component {
     }
 
     addCourseClicked() {
-        this.props.history.push(`/courses/-1`)
+        this.props.history.push(`/courses/-1`);
+        document.location.reload(true);
     }
 
     updateCourseClicked(id) {
         this.props.history.push(`/courses/${id}`);
+        document.location.reload(true);
     }
 
     render() {

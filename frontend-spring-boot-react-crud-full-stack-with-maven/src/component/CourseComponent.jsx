@@ -17,7 +17,8 @@ class CourseComponent extends Component {
 
     this.state = {
       id: match.params.id,
-      description: ''
+      description: '',
+      history
     }
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -27,7 +28,7 @@ class CourseComponent extends Component {
   componentDidMount() {
     // eslint-disable-next-line
     if (this.state.id == -1) {
-      return
+      return;
     }
 
     CourseDataService.retrieveCourse(INSTRUCTOR, this.state.id)
@@ -37,7 +38,26 @@ class CourseComponent extends Component {
   }
 
   onSubmit(values) {
-    console.log(values)
+    let username = INSTRUCTOR;
+
+    let course = {
+      id: this.state.id,
+      description: values.description
+    }
+
+    if (this.state.id === -1) {
+      CourseDataService.createCourse(username, course)
+        .then(() => {
+          this.state.history.push('/courses')
+          document.location.reload(true);
+        });
+    } else {
+      CourseDataService.updateCourse(username, this.state.id, course)
+        .then(() => {
+          this.state.history.push('/courses');
+          document.location.reload(true);
+        });
+    }
   }
 
   validate(values) {

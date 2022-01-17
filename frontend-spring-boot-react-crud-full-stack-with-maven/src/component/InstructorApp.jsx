@@ -14,7 +14,7 @@ class InstructorApp extends Component {
           <Routes>
             <Route path="/" exact element={<ListCoursesComponent history={history} />} />
             <Route path="/courses" exact element={<ListCoursesComponent history={history} />} />
-            <Route path="/courses/:id" exact element={<CourseComponent />} />
+            <Route path="/courses/:id" element={<CourseComponent />} />
           </Routes>
         </>
       </Router>
