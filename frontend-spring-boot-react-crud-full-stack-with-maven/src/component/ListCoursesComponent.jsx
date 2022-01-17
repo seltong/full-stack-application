@@ -10,6 +10,7 @@ class ListCoursesComponent extends Component {
         }
         this.deleteCourseClicked = this.deleteCourseClicked.bind(this)
         this.updateCourseClicked = this.updateCourseClicked.bind(this)
+        this.addCourseClicked = this.addCourseClicked.bind(this)
         this.refreshCourses = this.refreshCourses.bind(this)
     }
 
@@ -36,6 +37,10 @@ class ListCoursesComponent extends Component {
                 }
             )
     
+    }
+
+    addCourseClicked() {
+        this.props.history.push(`/courses/-1`)
     }
 
     updateCourseClicked(id) {
@@ -72,6 +77,9 @@ class ListCoursesComponent extends Component {
                             }
                         </tbody>
                     </table>
+                    <div className="row">
+                        <button className="btn btn-success" onClick={this.addCourseClicked}>Add</button>
+                    </div>
                 </div>
             </div>
         )
