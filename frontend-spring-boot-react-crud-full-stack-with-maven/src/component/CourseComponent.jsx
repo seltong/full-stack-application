@@ -19,6 +19,8 @@ class CourseComponent extends Component {
       id: match.params.id,
       description: ''
     }
+
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +35,10 @@ class CourseComponent extends Component {
       }));
   }
 
+  onSubmit(values) {
+    console.log(values)
+  }
+
   render() {
     let { description, id} = this.state
 
@@ -40,7 +46,7 @@ class CourseComponent extends Component {
       <div>
           <h3>Course</h3>
           <div className="container">
-            <Formik initialValues={{ id, description }}>
+            <Formik initialValues={{ id, description }} onSubmit={this.onSubmit}>
               {
                 (props) => (
                   <Form>
@@ -52,9 +58,9 @@ class CourseComponent extends Component {
                       <label>Description</label>
                       <Field className="form-control" type="text" name="description" />
                     </fieldset>
+
                     <button className="btn btn-success" type="submit">Save</button>
                   </Form>
-
                 )
               }
             </Formik>
