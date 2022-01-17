@@ -32,4 +32,9 @@ public class CourseResource {
 
 		return ResponseEntity.notFound().build();
 	}
+
+	@GetMapping()
+	public Course getCourse(@PathVariable String username, @PathVariable long id) {
+		return courseManagementService.findById(id);
+	}
 }
