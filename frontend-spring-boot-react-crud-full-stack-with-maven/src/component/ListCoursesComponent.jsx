@@ -8,6 +8,8 @@ class ListCoursesComponent extends Component {
             courses: [],
             message: null
         }
+        this.deleteCourseClicked = this.deleteCourseClicked.bind(this)
+        this.updateCourseClicked = this.updateCourseClicked.bind(this)
         this.refreshCourses = this.refreshCourses.bind(this)
     }
 
@@ -36,6 +38,10 @@ class ListCoursesComponent extends Component {
     
     }
 
+    updateCourseClicked(id) {
+        this.props.history.push(`/courses/${id}`);
+    }
+
     render() {
         return (
             <div className="container">
@@ -48,6 +54,8 @@ class ListCoursesComponent extends Component {
                             <tr>
                                 <th>Id</th>
                                 <th>Description</th>
+                                <th>Update</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +65,7 @@ class ListCoursesComponent extends Component {
                                         <tr key={course.id}>
                                             <td>{course.id}</td>
                                             <td>{course.description}</td>
+                                            <td><button className="btn btn-success" onClick={() => this.updateCourseClicked(course.id)}>Update</button></td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteCourseClicked(course.id)}>Delete</button></td>
                                         </tr>
                                 )
