@@ -1,4 +1,4 @@
-package com.in28minutes.fullstack.springboot.gradle.crud.springbootfullstackcrudfullstackwithgradle.course.copy;
+package com.in28minutes.fullstack.springboot.gradle.crud.springbootfullstackcrudfullstackwithgradle.course;
 
 import java.net.URI;
 import java.util.List;
